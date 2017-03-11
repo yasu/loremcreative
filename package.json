@@ -18,6 +18,7 @@
     "express": "^4.15.2",
     "fs": "^0.0.1-security",
     "gm": "^1.23.0",
-    "rnd-flickr": "^1.1.1"
+    "rnd-flickr": "^1.1.1",
+    "ttfjs": "^0.4.0"
   }
 }

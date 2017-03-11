@@ -3,7 +3,8 @@ require('dotenv').config();
 var express = require('express'),
     fs = require('fs'),
     rndFlickr = require('rnd-flickr'),
-    gm = require('gm');
+    gm = require('gm'),
+    TTFFont = require('ttfjs');
 
 var settings = {
   "flickr_api_key": process.env.FLICKR_API_KEY,
@@ -50,13 +51,30 @@ app.get('/:width?x:height?/:text?/', function(req, res, next) {
     });
 
     if (text) {
+      var fontPath = './fonts/mplus-1p-black.ttf';
+
+      var optimalFontSize = function(letters, canvasWidth) {
+        var font = new TTFFont(fs.readFileSync(fontPath));
+        var fontSize = 80;
+        while(true) {
+          var width = font.stringWidth(letters, fontSize);
+          if (fontSize <= 0) {
+            return 10;
+          } else if (width > canvasWidth) {
+            fontSize -= 10;
+          } else {
+            return fontSize;
+          }
+        }
+      };
+
       gm(image)
-        .fontSize('80px')
+        .fontSize(optimalFontSize(text, options.width))
         .fill('#333333')
         .drawText(1, 1, text, 'Center')
         .fill('#FFFFFF')
         .drawText(0, 0, text, 'Center')
-        .font('./fonts/mplus-1p-black.ttf')
+        .font(fontPath)
         .stream().pipe(res);
     } else {
       res.send(image);
