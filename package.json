@@ -1,0 +1,23 @@
+{
+  "name": "loremcreative",
+  "description": "LoremCreative particulally provides placeholder creative for web banner and ads in any size.",
+  "version": "1.0.0",
+  "author": "Yasuhiro Manai <yasuhiro.manai@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "7.4.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "repository": "https://github.com/yasu/loremcreative.git",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "fs": "^0.0.1-security",
+    "gm": "^1.23.0",
+    "rnd-flickr": "^1.1.1"
+  }
+}
