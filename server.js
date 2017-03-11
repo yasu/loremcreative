@@ -75,7 +75,9 @@ app.get('/:width?x:height?/:text?/', function(req, res, next) {
         .fill('#FFFFFF')
         .drawText(0, 0, text, 'Center')
         .font(fontPath)
-        .stream().pipe(res);
+        .toBuffer(function(error, buffer) {
+          res.send(buffer);
+        });
     } else {
       res.send(image);
     }
