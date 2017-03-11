@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title= title
+    link(rel='stylesheet', href='/css/styles.css')
+  body
+    .inner-wrap
+      section.cover
+      section.middle_section
+        each v in phrases
+          img(src="https://loremcreative.herokuapp.com/300x250/" + v())

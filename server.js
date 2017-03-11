@@ -4,7 +4,8 @@ var express = require('express'),
     fs = require('fs'),
     rndFlickr = require('rnd-flickr'),
     gm = require('gm'),
-    TTFFont = require('ttfjs');
+    TTFFont = require('ttfjs'),
+    faker = require('faker');
 
 var settings = {
   "flickr_api_key": process.env.FLICKR_API_KEY,
@@ -17,6 +18,14 @@ var settings = {
 }
 
 var app = express();
+app.use(express.static('public'));
+app.set('view engine', 'pug')
+
+app.get('/', function(req, res) {
+  res.render('index', {
+    phrases: new Array(5).fill(faker.company.catchPhrase)
+  });
+});
 
 app.get('/:width?x:height?/:text?/', function(req, res, next) {
   var options = {
@@ -61,7 +70,7 @@ app.get('/:width?x:height?/:text?/', function(req, res, next) {
           if (fontSize <= 0) {
             return 10;
           } else if (width > canvasWidth) {
-            fontSize -= 10;
+            fontSize -= 1;
           } else {
             return fontSize;
           }

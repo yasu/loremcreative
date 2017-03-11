@@ -1,0 +1,22 @@
+body {
+  color: #fff;
+  background: #000;
+  margin: 0;
+}
+.inner-wrap {
+  position: relative;
+  width: 100%;
+  -webkit-transition: -webkit-transform 500ms ease;
+  -moz-transition: -moz-transform 500ms ease;
+  -ms-transition: -ms-transform 500ms ease;
+  -o-transition: -o-transform 500ms ease;
+  transition: transform 500ms ease;
+}
+section.cover {
+  height: 628px;
+  background: url('https://loremcreative.herokuapp.com/1200x628/LoremCreative') no-repeat center center;
+  background-size: cover;
+}
+section.middle_section img {
+  width: calc(20%);
+}
