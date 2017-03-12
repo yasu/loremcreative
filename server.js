@@ -23,6 +23,7 @@ app.set('view engine', 'pug')
 
 app.get('/', function(req, res) {
   res.render('index', {
+    title: 'LoremCreative',
     phrases: new Array(5).fill(faker.company.catchPhrase)
   });
 });
